@@ -17,5 +17,9 @@ import { FetchLoading } from 'fetch-loading'
 
 <FetchLoading theme="#a2d1aa" />
 
+<FetchLoading theme="#fafafa" />
+
+<FetchLoading theme="#000000" />
+
 ...
 ```

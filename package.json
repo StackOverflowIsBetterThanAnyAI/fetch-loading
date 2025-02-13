@@ -17,7 +17,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/StackOverflowIsBetterThanAnyAI/fetch-loading"
+        "url": "git+https://github.com/StackOverflowIsBetterThanAnyAI/fetch-loading.git"
     },
     "prettier": "prettier-es5",
     "author": "Michael Münzenhofer",

@@ -1,6 +1,6 @@
 {
     "name": "fetch-loading",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Loading animation which can be displayed while data is fetched from an API",
     "main": "src/index.ts",
     "files": [

@@ -1,5 +1,9 @@
 # Fetch Loading
 
+```
+https://www.npmjs.com/package/fetch-loading
+```
+
 Loading animation which can be displayed while data is fetched from an API.
 
 Pass any Hex-value as an argument for the ```theme``` property.

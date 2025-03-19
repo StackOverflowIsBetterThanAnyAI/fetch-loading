@@ -27,6 +27,8 @@ import { FetchLoading } from 'fetch-loading'
 
 ```
 
+![Preview Default Fetch Loading Animation](https://github.com/StackOverflowIsBetterThanAnyAI/fetch-loading/blob/main/preview.gif)
+
 You can also pass any Hex-value as an argument for the ```theme``` property:
 
 ```

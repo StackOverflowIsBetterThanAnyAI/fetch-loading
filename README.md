@@ -1,12 +1,16 @@
 # Fetch Loading
 
+Loading animation which can be displayed while data is fetched from an API.
+
+## Installation
+
 ```
 https://www.npmjs.com/package/fetch-loading
 ```
 
-Loading animation which can be displayed while data is fetched from an API.
-
-Pass any Hex-value as an argument for the ```theme``` property.
+```
+npm i -D fetch-loading
+```
 
 ## Usage
 
@@ -26,4 +30,7 @@ import { FetchLoading } from 'fetch-loading'
 <FetchLoading theme="#000000" />
 
 ...
+
 ```
+
+Pass any Hex-value as an argument for the ```theme``` property.

@@ -2,7 +2,12 @@
     "name": "fetch-loading",
     "version": "0.0.1",
     "description": "Loading animation which can be displayed while data is fetched from an API",
-    "main": "src/index.ts",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "rollup": "rollup -c --bundleConfigAsCjs"
+    },
     "files": [
         "src/*"
     ],
@@ -23,11 +28,19 @@
     "author": "Michael Münzenhofer",
     "license": "MIT",
     "devDependencies": {
-        "@tsconfig/recommended": "^1.0.8",
-        "@types/react": "^19.0.8"
+        "@rollup/plugin-commonjs": "^28.0.3",
+        "@rollup/plugin-node-resolve": "^16.0.1",
+        "@rollup/plugin-terser": "^0.4.4",
+        "@rollup/plugin-typescript": "^12.1.2",
+        "@types/react": "^19.0.0",
+        "react": "^19.0.0",
+        "rollup-plugin-dts": "^6.2.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "tslib": "^2.8.1",
+        "typescript": "^5.8.2"
     },
     "dependencies": {
-        "react": "^19.0.0",
-        "typescript": "^5.7.3"
+        "rollup": "^4.36.0",
+        "rollup-plugin-postcss": "^4.0.2"
     }
 }

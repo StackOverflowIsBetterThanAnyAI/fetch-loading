@@ -27,6 +27,8 @@ import { FetchLoading } from 'fetch-loading'
 
 ```
 
+![Default Fetch Loading Animation Preview](https://github.com/user-attachments/assets/b4ee8647-0b14-4af4-8f67-cba615b31031)
+
 You can also pass any Hex-value as an argument for the ```theme``` property:
 
 ```

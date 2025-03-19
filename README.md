@@ -21,7 +21,17 @@ import { FetchLoading } from 'fetch-loading'
 
 <FetchLoading />
 
-### with no arguments being passed, the animation will fall back to its default color #52525c
+### with no arguments being passed,
+### the animation will fall back to its default color #52525c
+
+...
+
+```
+
+You can also pass any Hex-value as an argument for the ```theme``` property:
+
+```
+...
 
 <FetchLoading theme="#a2d1aa" />
 
@@ -30,7 +40,4 @@ import { FetchLoading } from 'fetch-loading'
 <FetchLoading theme="#000000" />
 
 ...
-
 ```
-
-Pass any Hex-value as an argument for the ```theme``` property.

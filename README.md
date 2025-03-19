@@ -8,10 +8,6 @@ Loading animation which can be displayed while data is fetched from an API.
 ## Installation
 
 ```
-https://www.npmjs.com/package/fetch-loading
-```
-
-```
 npm i -D fetch-loading
 ```
 

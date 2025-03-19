@@ -1,6 +1,6 @@
 {
     "name": "fetch-loading",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Loading animation which can be displayed while data is fetched from an API",
     "main": "dist/index.js",
     "module": "dist/index.mjs",

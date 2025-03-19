@@ -1,6 +1,6 @@
 {
     "name": "fetch-loading",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Loading animation which can be displayed while data is fetched from an API",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
@@ -9,7 +9,7 @@
         "rollup": "rollup -c --bundleConfigAsCjs"
     },
     "files": [
-        "src/*"
+        "dist/*"
     ],
     "keywords": [
         "loading",

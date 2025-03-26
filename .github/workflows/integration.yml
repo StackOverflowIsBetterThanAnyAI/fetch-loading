@@ -46,7 +46,7 @@ jobs:
           import { FetchLoading } from 'fetch-loading'
 
           const App = () => {
-            return <FetchLoading foo bar/>
+            return <FetchLoading />
           }
 
           export default App

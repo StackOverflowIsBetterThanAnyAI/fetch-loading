@@ -37,6 +37,8 @@ jobs:
           cd integration
           npx yalc add fetch-loading
           npm i
+          cat package.json | grep fetch-loading
+          ls node_modules | grep fetch-loading
 
       - name: Override App.jsx
         run: |
@@ -44,7 +46,7 @@ jobs:
           import { FetchLoading } from 'fetch-loading'
 
           const App = () => {
-            return <div>Hello World!</div>
+            return <FetchLoading />
           }
 
           export default App

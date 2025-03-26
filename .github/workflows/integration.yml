@@ -33,7 +33,7 @@ jobs:
         run: |
           cd integration
           npx yalc add fetch-loading
-          npm ci
+          npm i
 
       - name: Override App.jsx
         run: |

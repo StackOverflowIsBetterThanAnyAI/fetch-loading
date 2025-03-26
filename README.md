@@ -39,17 +39,9 @@ You can also pass any Hex- / RGB- or RGBA-value as an argument for the `theme` p
 
 <FetchLoading theme="#fafafafa" />
 
-<FetchLoading theme="rgb(0, 0, 0)" />
-
-<FetchLoading theme="rgb(170, 221, 170)" />
-
-<FetchLoading theme="rgb(250, 250, 250)" />
-
-<FetchLoading theme="rgba(0, 0, 0, 0.75)" />
+<FetchLoading theme="rgb(37, 0, 255)" />
 
 <FetchLoading theme="rgba(170, 221, 170, 0.85)" />
-
-<FetchLoading theme="rgba(250, 250, 250, 0.25)" />
 
 ...
 ```

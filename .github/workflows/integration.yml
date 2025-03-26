@@ -1,0 +1,55 @@
+name: "Flawless Integration"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  integration:
+    name: Analyze Integration
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Publish Repository to Yalc
+        run: npx yalc publish
+
+      - name: Create Integration Project
+        run: npx create-react-app integration
+
+      - name: Use Package In Integration Project
+        run: |
+          cd integration
+          yalc add fetch-loading
+          npm ci
+
+      - name: Override App.jsx
+        run: |
+          cat <<EOF > integration/src/App.jsx
+          import { FetchLoading } from 'fetch-loading'
+
+          const App = () => {
+            return <FetchLoading />
+          }
+
+          export default App
+          EOF
+
+      - name: Start React App
+        run: |
+          cd integration
+          npm start &
+          sleep 60
+          curl -f http://localhost:3000 || exit 1

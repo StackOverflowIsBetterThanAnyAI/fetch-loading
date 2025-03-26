@@ -42,7 +42,6 @@ jobs:
       - name: Override App.jsx
         run: |
           cat <<EOF > integration/src/App.js
-          import { FetchLoading } from 'fetch-loading'
 
           const App = () => {
             return <FetchLoading />

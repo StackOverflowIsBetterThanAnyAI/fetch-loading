@@ -33,15 +33,19 @@ You can also pass any Hex- / RGB- or RGBA-value as an argument for the `theme` p
 ```
 ...
 
-<FetchLoading theme="#000" />
+<FetchLoading theme="#121" />
 
-<FetchLoading theme="#adae" />
+<FetchLoading theme="#608c" />
 
-<FetchLoading theme="#fafafafa" />
+<FetchLoading theme="#ffe98c" />
 
-<FetchLoading theme="rgb(37, 0, 255)" />
+<FetchLoading theme="#ff1e2cf0" />
 
-<FetchLoading theme="rgba(170, 221, 170, 0.85)" />
+<FetchLoading theme="rgb(178, 165, 253)" />
+
+<FetchLoading theme="rgba(131, 240, 131, 0.8)" />
 
 ...
 ```
+
+![Theme Fetch Loading Animation Preview](https://github.com/user-attachments/assets/e0179995-309a-46f0-988f-70bf3e2ce9d6)

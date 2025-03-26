@@ -37,8 +37,7 @@ jobs:
           cd integration
           npx yalc add fetch-loading
           npm i
-          cat package.json | grep fetch-loading
-          ls node_modules | grep fetch-loading
+          cat package.json | grep fetch-loading || exit 1
 
       - name: Override App.jsx
         run: |

@@ -64,7 +64,7 @@ jobs:
 
       - name: Create Puppeteer Script
         run: |
-          cat <<EOF > integration/integration.js
+          cat <<EOF > integration/integration.mjs
           import puppeteer from 'puppeteer'
           (async () => {
             const browser = await puppeteer.launch({
@@ -85,4 +85,4 @@ jobs:
           cd integration
           npm start &
           sleep 60
-          node integration.js
+          node integration.mjs

@@ -52,19 +52,37 @@ jobs:
           export default App
           EOF
 
+      - name: Install Puppeteer
+        run: |
+          cd integration
+          npm i puppeteer
+
       - name: Build Integration Project
         run: |
           cd integration
           npm run build || exit 1
 
-      - name: Start React App
+      - name: Create Puppeteer Script
+        run: |
+          cat <<EOF > integration/integration.js
+          const puppeteer = require('puppeteer')
+          (async () => {
+            const browser = await puppeteer.launch({
+              args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            })
+            const page = await browser.newPage()
+            await page.goto('http://localhost:3000', { waitUntil: 'networkidle0' })
+            await page.waitForSelector('div[style*="display: flex"]', { timeout: 5000 })
+              .catch(() => {
+                process.exit(1)
+              })
+            await browser.close()
+          })()
+          EOF
+
+      - name: Test For FetchLoading Component
         run: |
           cd integration
           npm start &
           sleep 60
-          curl http://localhost:3000 -o output.html || exit 1
-
-      - name: Validate Rendered Output
-        run: |
-          cd integration
-          grep "fetch-loading" output.html || (cat output.html && exit 1)
+          node integration.js

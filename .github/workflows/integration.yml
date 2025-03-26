@@ -62,4 +62,9 @@ jobs:
           cd integration
           npm start &
           sleep 60
-          curl http://localhost:3000 || exit 1
+          curl http://localhost:3000 -o output.html || exit 1
+
+      - name: Validate Rendered Output
+        run: |
+          cd integration
+          grep "fetch-loading" output.html || (cat output.html && exit 1)

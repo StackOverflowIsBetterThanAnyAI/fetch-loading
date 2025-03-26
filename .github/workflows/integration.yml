@@ -32,7 +32,7 @@ jobs:
       - name: Use Package In Integration Project
         run: |
           cd integration
-          yalc add fetch-loading
+          npx yalc add fetch-loading
           npm ci
 
       - name: Override App.jsx

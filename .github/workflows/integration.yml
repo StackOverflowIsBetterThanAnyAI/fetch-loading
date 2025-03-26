@@ -43,8 +43,10 @@ jobs:
         run: |
           cat <<EOF > integration/src/App.js
 
+          import { FetchLoading } from 'fetch-loading'
+
           const App = () => {
-            return <FetchLoading />
+            return <FetchLoading foo bar/>
           }
 
           export default App

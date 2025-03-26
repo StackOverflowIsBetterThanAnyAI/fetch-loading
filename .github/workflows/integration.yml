@@ -44,7 +44,7 @@ jobs:
           import { FetchLoading } from 'fetch-loading'
 
           const App = () => {
-            return <div><FetchLoading /></div>
+            return <div>Hello World!</div>
           }
 
           export default App

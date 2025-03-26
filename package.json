@@ -1,6 +1,6 @@
 {
     "name": "fetch-loading",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Loading animation which can be displayed while data is fetched from an API",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
@@ -24,7 +24,6 @@
         "type": "git",
         "url": "git+https://github.com/StackOverflowIsBetterThanAnyAI/fetch-loading.git"
     },
-    "prettier": "prettier-es5",
     "author": "Michael Münzenhofer",
     "license": "MIT",
     "devDependencies": {

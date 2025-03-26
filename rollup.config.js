@@ -15,13 +15,13 @@ export default [
             {
                 file: packageJson.main,
                 format: 'cjs',
-                sourcemap: true
+                sourcemap: true,
             },
             {
                 file: packageJson.module,
                 format: 'esm',
-                sourcemap: true
-            }
+                sourcemap: true,
+            },
         ],
         plugins: [
             peerDepsExternal(),
@@ -29,14 +29,14 @@ export default [
             commonjs(),
             typescript({ tsconfig: './tsconfig.json' }),
             terser(),
-            postcss()
+            postcss(),
         ],
-        external: ['react', 'react-dom']
+        external: ['react', 'react-dom'],
     },
     {
         input: 'src/index.ts',
         output: [{ file: packageJson.types }],
         plugins: [dts.default()],
-        external: [/\.css/]
-    }
+        external: [/\.css/],
+    },
 ]

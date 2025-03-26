@@ -1,18 +1,30 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import './index.css'
 
 type FetchLoadingProps = {
     theme?: string
 }
 type DotProps = {
-    delay?: number
+    delay: number
 }
 
 const isValidHex = (color: string): boolean =>
-    /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color)
+    /^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(color)
 
-const Dot: FC<DotProps & FetchLoadingProps> = ({ delay = 0, theme }) => {
-    const background = theme && isValidHex(theme) ? theme : '#52525c'
+const isValidRGB = (color: string): boolean => {
+    return (
+        /^rgb\((\s*(2((5[0-5])|([0-4][0-9]))|(1[0-9]{2})|([0-9]?[0-9])),){2}\s*(2((5[0-5])|([0-4][0-9]))|(1[0-9]{2})|([0-9]?[0-9]))\s*\)$/i.test(
+            color
+        ) ||
+        /^rgba\((\s*(2((5[0-5])|([0-4][0-9]))|(1[0-9]{2})|([0-9]?[0-9])),){2}\s*(2((5[0-5])|([0-4][0-9]))|(1[0-9]{2})|([0-9]?[0-9])),\s*(1.0)|(0.[0-9]{1,2})\s*\)$/i.test(
+            color
+        )
+    )
+}
+
+const Dot: FC<DotProps & FetchLoadingProps> = ({ delay, theme }) => {
+    const background =
+        theme && (isValidHex(theme) || isValidRGB(theme)) ? theme : '#52525c'
     return (
         <div
             style={{

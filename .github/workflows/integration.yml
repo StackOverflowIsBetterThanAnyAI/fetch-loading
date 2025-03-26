@@ -65,7 +65,7 @@ jobs:
       - name: Create Puppeteer Script
         run: |
           cat <<EOF > integration/integration.js
-          const puppeteer = require('puppeteer')
+          import puppeteer from 'puppeteer'
           (async () => {
             const browser = await puppeteer.launch({
               args: ['--no-sandbox', '--disable-setuid-sandbox'],

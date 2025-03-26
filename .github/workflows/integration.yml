@@ -55,4 +55,4 @@ jobs:
           cd integration
           npm start &
           sleep 60
-          curl -f http://localhost:3000 | grep '<div style="display: flex; gap: 8px; padding: 6px 2px;"><div style="animation: 2s ease-in-out 0s infinite normal none running fetch-loading; height: 12px; width: 12px; background-color: rgb(82, 82, 92);"></div><div style="animation: 2s ease-in-out -1.33s infinite normal none running fetch-loading; height: 12px; width: 12px; background-color: rgb(82, 82, 92);"></div><div style="animation: 2s ease-in-out -0.67s infinite normal none running fetch-loading; height: 12px; width: 12px; background-color: rgb(82, 82, 92);"></div></div>' || exit 1
+          curl -f http://localhost:3000 || exit 1

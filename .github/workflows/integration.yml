@@ -30,7 +30,7 @@ jobs:
         run: npx yalc publish
 
       - name: Create Integration Project
-        run: npx create-react-app integration
+        run: npx create-react-app integration --template typescript
 
       - name: Use Package In Integration Project
         run: |
@@ -41,7 +41,7 @@ jobs:
 
       - name: Override App.jsx
         run: |
-          cat <<EOF > integration/src/App.js
+          cat <<EOF > integration/src/App.tsx
 
           import { FetchLoading } from 'fetch-loading'
 
@@ -62,4 +62,4 @@ jobs:
           cd integration
           npm start &
           sleep 60
-          curl -fs http://localhost:3000 || exit 1
+          curl http://localhost:3000 || exit 1

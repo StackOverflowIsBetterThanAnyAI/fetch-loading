@@ -50,6 +50,11 @@ jobs:
           export default App
           EOF
 
+      - name: Build Integration Project
+        run: |
+          cd integration
+          npm run build || exit 1
+
       - name: Start React App
         run: |
           cd integration

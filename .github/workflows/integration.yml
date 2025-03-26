@@ -57,4 +57,4 @@ jobs:
           npm start &
           sleep 60
           curl -fsS http://localhost:3000 -o output.html
-          xmllint --html --xpath "//*[contains(@style, 'display: flex')]" - || exit 1
+          xmllint --html --xpath "//*[contains(@style, 'display: flex')]" output.html || exit 1

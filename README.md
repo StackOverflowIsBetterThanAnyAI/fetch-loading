@@ -2,12 +2,12 @@
 
 ![npm Downloads Last Year](https://img.shields.io/npm/dy/fetch-loading)
 
-Loading animation which can be displayed while data is fetched from an API.
+React loading animation which can be displayed while data is fetched from an API.
 
 ## Installation
 
 ```
-npm i -D fetch-loading
+npm i fetch-loading
 ```
 
 ## Usage

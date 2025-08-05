@@ -20,7 +20,8 @@ import { FetchLoading } from 'fetch-loading'
 <FetchLoading />
 
 ### with no arguments being passed,
-### the animation will fall back to its default color #52525c
+### the animation will fall back to its default color #52525c,
+### and it will not contain any accessible attributes
 
 ...
 
@@ -49,3 +50,29 @@ You can also pass any Hex- / RGB- or RGBA-value as an argument for the `theme` p
 ```
 
 ![Theme Fetch Loading Animation Preview](https://github.com/user-attachments/assets/e0179995-309a-46f0-988f-70bf3e2ce9d6)
+
+By passing a descriptive value for `ariaLabel`, the following properties are added:
+
+```
+...
+
+<FetchLoading ariaLabel="Loading" />
+
+### role="status"
+### aria-live="polite"
+### aria-label="Loading"
+
+...
+```
+
+This results in screen reader users hearing “Status - Loading” being read aloud.
+
+Of course, `theme` and `ariaLabel` can also be used simultaneously:
+
+```
+...
+
+<FetchLoading ariaLabel="Loading" theme="#ffe98c"/>
+
+...
+```

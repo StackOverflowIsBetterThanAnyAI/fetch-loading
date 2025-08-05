@@ -41,17 +41,15 @@ const Dot: FC<DotProps & FetchLoadingProps> = ({ delay, theme }) => {
 
 export const FetchLoading: FC<FetchLoadingProps> = ({ ariaLabel, theme }) => {
     return (
-        <>
-            <div
-                role={ariaLabel ? 'status' : undefined}
-                aria-label={ariaLabel}
-                aria-live={ariaLabel ? 'polite' : undefined}
-                style={{ display: 'flex', gap: '8px', padding: '6px 2px' }}
-            >
-                <Dot delay={0} theme={theme} />
-                <Dot delay={-1.33} theme={theme} />
-                <Dot delay={-0.67} theme={theme} />
-            </div>
-        </>
+        <div
+            role={ariaLabel ? 'status' : undefined}
+            aria-label={ariaLabel}
+            aria-live={ariaLabel ? 'polite' : undefined}
+            style={{ display: 'flex', gap: '8px', padding: '6px 2px' }}
+        >
+            <Dot delay={0} theme={theme} />
+            <Dot delay={-1.33} theme={theme} />
+            <Dot delay={-0.67} theme={theme} />
+        </div>
     )
 }

@@ -1,6 +1,6 @@
 {
     "name": "fetch-loading",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Loading animation which can be displayed while data is fetched from an API",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
@@ -32,6 +32,7 @@
         "@rollup/plugin-terser": "^0.4.4",
         "@rollup/plugin-typescript": "^12.1.2",
         "@types/react": "^19.0.0",
+        "prettier-es5": "^0.0.4",
         "rollup": "^4.36.0",
         "rollup-plugin-dts": "^6.2.0",
         "rollup-plugin-peer-deps-external": "^2.2.4",
@@ -39,6 +40,7 @@
         "tslib": "^2.8.1",
         "typescript": "^5.8.2"
     },
+    "prettier": "prettier-es5",
     "peerDependencies": {
         "react": "^19.0.0"
     }

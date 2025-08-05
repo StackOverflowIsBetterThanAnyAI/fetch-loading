@@ -2,6 +2,7 @@ import { FC } from 'react'
 import './index.css'
 
 type FetchLoadingProps = {
+    ariaLabel?: string
     theme?: string
 }
 type DotProps = {
@@ -38,10 +39,15 @@ const Dot: FC<DotProps & FetchLoadingProps> = ({ delay, theme }) => {
     )
 }
 
-export const FetchLoading: FC<FetchLoadingProps> = ({ theme }) => {
+export const FetchLoading: FC<FetchLoadingProps> = ({ ariaLabel, theme }) => {
     return (
         <>
-            <div style={{ display: 'flex', gap: '8px', padding: '6px 2px' }}>
+            <div
+                role={ariaLabel ? 'status' : undefined}
+                aria-label={ariaLabel}
+                aria-live={ariaLabel ? 'polite' : undefined}
+                style={{ display: 'flex', gap: '8px', padding: '6px 2px' }}
+            >
                 <Dot delay={0} theme={theme} />
                 <Dot delay={-1.33} theme={theme} />
                 <Dot delay={-0.67} theme={theme} />

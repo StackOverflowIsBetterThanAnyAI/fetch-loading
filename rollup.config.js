@@ -27,7 +27,10 @@ export default [
             peerDepsExternal(),
             resolve(),
             commonjs(),
-            typescript({ tsconfig: './tsconfig.json' }),
+            typescript({
+                tsconfig: './tsconfig.json',
+                declaration: false,
+            }),
             terser(),
             postcss(),
         ],
@@ -37,6 +40,6 @@ export default [
         input: 'src/index.ts',
         output: [{ file: packageJson.types }],
         plugins: [dts.default()],
-        external: [/\.css/],
+        external: [/\.css$/],
     },
 ]

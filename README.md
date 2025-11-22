@@ -2,7 +2,9 @@
 
 ![npm Downloads Last Year](https://img.shields.io/npm/dy/fetch-loading)
 
-React loading animation which can be displayed while data is fetched from an API.
+React loading animation with three dots which can be displayed while data is being fetched from an API.
+
+Supports React v18 and v19.
 
 ## Installation
 

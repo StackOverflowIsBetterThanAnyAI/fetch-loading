@@ -74,7 +74,7 @@ Of course, `theme` and `ariaLabel` can also be used simultaneously:
 ```
 ...
 
-<FetchLoading ariaLabel="Loading" theme="#ffe98c"/>
+<FetchLoading ariaLabel="Loading" theme="#ffe98c" />
 
 ...
 ```

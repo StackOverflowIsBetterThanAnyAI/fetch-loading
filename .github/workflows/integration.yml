@@ -46,7 +46,7 @@ jobs:
           import { FetchLoading } from 'fetch-loading'
 
           const App = () => {
-            return <FetchLoading />
+            return <FetchLoading ariaLabel="Loading" theme="#ffe98c" />
           }
 
           export default App

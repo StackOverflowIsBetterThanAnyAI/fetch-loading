@@ -21,7 +21,7 @@ jobs:
           node-version: 22
 
       - name: Install Dependencies
-        run: npm i
+        run: npm ci
 
       - name: Execute Rollup Script
         run: npm run rollup
@@ -30,11 +30,12 @@ jobs:
         run: npx yalc publish
 
       - name: Create Integration Project
-        run: npx create-react-app integration --template typescript
+        run: npm create vite@latest integration -- --template react-ts
 
       - name: Use Package in Integration Project
         run: |
           cd integration
+          npm i
           npx yalc add fetch-loading
           npm i
           cat package.json | grep fetch-loading || exit 1
@@ -71,18 +72,21 @@ jobs:
               args: ['--no-sandbox', '--disable-setuid-sandbox'],
             })
             const page = await browser.newPage()
-            await page.goto('http://localhost:3000', { waitUntil: 'networkidle0' })
-            await page.waitForSelector('div[style*="display: flex"]', { timeout: 5000 })
-              .catch(() => {
+            try {
+                await page.goto('http://localhost:5173', { waitUntil: 'networkidle0' })
+                await page.waitForSelector('div[aria-label="Loading"]', { timeout: 5000 })
+            } catch (e) {
+                console.error('Error:', e)
                 process.exit(1)
-              })
-            await browser.close()
+            } finally {
+                await browser.close()
+            }
           })()
           EOF
 
       - name: Test for FetchLoading Component
         run: |
           cd integration
-          npm start &
-          sleep 60
+          npm run dev -- --port 5173 --host &
+          npx wait-on http://localhost:5173 --timeout 10000
           node integration.mjs

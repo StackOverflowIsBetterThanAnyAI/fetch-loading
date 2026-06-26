@@ -1,6 +1,6 @@
 {
     "name": "fetch-loading",
-    "version": "0.0.9",
+    "version": "0.1.0",
     "description": "Loading animation with three dots which can be displayed while data is being fetched from an API.",
     "main": "dist/index.js",
     "module": "dist/index.mjs",

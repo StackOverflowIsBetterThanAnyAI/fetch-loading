@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es2019",
+        "lib": ["DOM", "ESNext"],
+        "strict": true,
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
+        "noEmit": true
+    },
+    "files": ["types.test.tsx"]
+}

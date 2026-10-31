@@ -7,29 +7,79 @@ on:
   pull_request:
     branches:
       - main
+  # Weekly check of the version published on npm against the latest React releases
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
 
 jobs:
-  integration:
-    name: Analyze Integration
+  package:
+    name: Test Package (React ${{ matrix.react }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        react: [18, 19]
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Execute Rollup Script
-        run: npm run rollup
+      - name: Install React ${{ matrix.react }}
+        run: npm i --no-save react@${{ matrix.react }} react-dom@${{ matrix.react }} @types/react@${{ matrix.react }}
 
-      - name: Publish Repository to Yalc
-        run: npx yalc publish
+      - name: Build Package
+        run: npm run build
+
+      - name: Run Unit Tests
+        run: npm test
+
+      - name: Check Types
+        run: npm run test:types
+
+      - name: Check Package Exports
+        run: npm run test:package
+
+  integration:
+    name: Analyze Integration (React ${{ matrix.react }})
+    needs: package
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        react: [18, 19]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Pack Local Package
+        if: github.event_name != 'schedule'
+        run: |
+          npm ci
+          npm run build
+          npm pack
+          echo "PACKAGE=$PWD/$(ls fetch-loading-*.tgz)" >> "$GITHUB_ENV"
+
+      - name: Use Published Package
+        if: github.event_name == 'schedule'
+        run: echo "PACKAGE=fetch-loading@latest" >> "$GITHUB_ENV"
 
       - name: Create Integration Project
         run: npm create vite@latest integration -- --template react-ts
@@ -38,27 +88,26 @@ jobs:
         run: |
           cd integration
           npm i
-          npx yalc add fetch-loading
-          npm i
+          npm i react@${{ matrix.react }} react-dom@${{ matrix.react }} @types/react@${{ matrix.react }} @types/react-dom@${{ matrix.react }}
+          npm i "$PACKAGE" puppeteer
           cat package.json | grep fetch-loading || exit 1
 
-      - name: Override App.jsx
+      - name: Override App.tsx
         run: |
           cat <<EOF > integration/src/App.tsx
 
           import { FetchLoading } from 'fetch-loading'
 
           const App = () => {
-            return <FetchLoading ariaLabel="Loading" theme="#ffe98c" />
+            return (
+              <div style={{ height: 200 }}>
+                <FetchLoading ariaLabel="Loading" theme="#ffe98c" size={20} center />
+              </div>
+            )
           }
 
           export default App
           EOF
-
-      - name: Install Puppeteer
-        run: |
-          cd integration
-          npm i puppeteer
 
       - name: Build Integration Project
         run: |
@@ -75,8 +124,28 @@ jobs:
             })
             const page = await browser.newPage()
             try {
-                await page.goto('http://localhost:5173', { waitUntil: 'networkidle0' })
+                await page.goto('http://localhost:4173', { waitUntil: 'networkidle0' })
                 await page.waitForSelector('div[aria-label="Loading"]', { timeout: 5000 })
+                const result = await page.evaluate(() => {
+                    const dots = [...document.querySelectorAll('.fetch-loading__dot')]
+                    const style = getComputedStyle(dots[0])
+                    return {
+                        dots: dots.length,
+                        width: style.width,
+                        color: style.backgroundColor,
+                        animation: style.animationName,
+                    }
+                })
+                console.log(result)
+                const expected = {
+                    dots: 3,
+                    width: '20px',
+                    color: 'rgb(255, 233, 140)',
+                    animation: 'fetch-loading',
+                }
+                for (const [key, value] of Object.entries(expected)) {
+                    if (result[key] !== value) throw new Error(key + ' is ' + result[key] + ', expected ' + value)
+                }
             } catch (e) {
                 console.error('Error:', e)
                 process.exit(1)
@@ -89,6 +158,6 @@ jobs:
       - name: Test for FetchLoading Component
         run: |
           cd integration
-          npm run dev -- --port 5173 --host &
-          npx wait-on http://localhost:5173 --timeout 10000
+          npm run preview -- --port 4173 --host &
+          npx wait-on http://localhost:4173 --timeout 10000
           node integration.mjs

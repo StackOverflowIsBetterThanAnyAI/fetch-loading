@@ -16,7 +16,6 @@ jobs:
     name: Analyze (javascript-typescript)
     runs-on: ubuntu-latest
 
-    # contents: read for the checkout, security-events: write to upload the results
     permissions:
       contents: read
       security-events: write

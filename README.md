@@ -36,21 +36,17 @@ You can pass any valid CSS color (Hex, RGB(A), HSL, named colors, `var(--my-colo
 ```
 ...
 
-<FetchLoading theme="#121" />
+<FetchLoading theme="var(--color-primary)" />
 
 <FetchLoading theme="#608c" />
 
 <FetchLoading theme="#ffe98c" />
 
-<FetchLoading theme="#ff1e2cf0" />
+<FetchLoading theme="hsl(356, 100%, 56%)" />
 
 <FetchLoading theme="rgb(178, 165, 253)" />
 
 <FetchLoading theme="rgba(131, 240, 131, 0.8)" />
-
-<FetchLoading theme="hsl(200 80% 50%)" />
-
-<FetchLoading theme="var(--color-primary)" />
 
 ...
 ```

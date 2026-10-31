@@ -1,20 +1,11 @@
-import peerDepsExternal from 'rollup-plugin-peer-deps-external'
-import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import dts from 'rollup-plugin-dts'
 import terser from '@rollup/plugin-terser'
-import postcss from 'rollup-plugin-postcss'
 
 const packageJson = require('./package.json')
 
-const commonPlugins = [
-    peerDepsExternal(),
-    resolve(),
-    commonjs(),
-    postcss(),
-    terser(),
-]
+// react, react-dom and subpaths like react/jsx-runtime are provided by the consumer
+const external = [/^react(-dom)?($|\/)/]
 
 export default [
     {
@@ -25,20 +16,6 @@ export default [
                 format: 'esm',
                 sourcemap: true,
             },
-        ],
-        plugins: [
-            ...commonPlugins,
-            typescript({
-                tsconfig: './tsconfig.json',
-                declaration: false,
-                compilerOptions: { module: 'ESNext' },
-            }),
-        ],
-        external: ['react', 'react-dom'],
-    },
-    {
-        input: 'src/index.ts',
-        output: [
             {
                 file: packageJson.main,
                 format: 'cjs',
@@ -46,18 +23,22 @@ export default [
             },
         ],
         plugins: [
-            ...commonPlugins,
             typescript({
                 tsconfig: './tsconfig.json',
                 declaration: false,
             }),
+            terser(),
         ],
-        external: ['react', 'react-dom'],
+        external,
     },
     {
         input: 'src/index.ts',
-        output: [{ file: packageJson.types, format: 'esm' }],
+        // .d.ts for require, .d.mts for import, so each build gets matching types
+        output: [
+            { file: packageJson.types, format: 'esm' },
+            { file: packageJson.types.replace(/\.d\.ts$/, '.d.mts'), format: 'esm' },
+        ],
         plugins: [dts.default()],
-        external: [/\.css$/],
+        external,
     },
 ]

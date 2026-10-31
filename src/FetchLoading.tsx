@@ -1,55 +1,115 @@
-import { FC } from 'react'
-import './index.css'
+import { CSSProperties, FC, HTMLAttributes } from 'react'
 
-type FetchLoadingProps = {
+export type FetchLoadingProps = Omit<
+    HTMLAttributes<HTMLDivElement>,
+    'children'
+> & {
     ariaLabel?: string
+    center?: boolean
+    size?: number | string
     theme?: string
 }
-type DotProps = {
-    delay: number
+
+// :where() keeps the specificity at zero, so any className or style passed
+// by the consumer always wins over the defaults below.
+const styles = `
+:where(.fetch-loading) {
+    --fl-size: var(--fetch-loading-size, 12px);
+    display: flex;
+    gap: calc(var(--fl-size) * 2 / 3);
+    padding: calc(var(--fl-size) / 2) calc(var(--fl-size) / 6);
 }
-
-const isValidHex = (color: string): boolean =>
-    /^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(color)
-
-const isValidRGB = (color: string): boolean => {
-    return (
-        /^rgb\((\s*(2((5[0-5])|([0-4][0-9]))|(1[0-9]{2})|([0-9]?[0-9])),){2}\s*(2((5[0-5])|([0-4][0-9]))|(1[0-9]{2})|([0-9]?[0-9]))\s*\)$/i.test(
-            color
-        ) ||
-        /^rgba\((\s*(2((5[0-5])|([0-4][0-9]))|(1[0-9]{2})|([0-9]?[0-9])),){2}\s*(2((5[0-5])|([0-4][0-9]))|(1[0-9]{2})|([0-9]?[0-9])),\s*(1.0)|(0.[0-9]{1,2})\s*\)$/i.test(
-            color
-        )
-    )
+:where(.fetch-loading--center) {
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
 }
-
-const Dot: FC<DotProps & FetchLoadingProps> = ({ delay, theme }) => {
-    const background =
-        theme && (isValidHex(theme) || isValidRGB(theme)) ? theme : '#52525c'
-    return (
-        <div
-            style={{
-                animation: 'fetch-loading 2s ease-in-out infinite',
-                animationDelay: `${delay}s`,
-                height: '12px',
-                width: '12px',
-                backgroundColor: background,
-            }}
-        ></div>
-    )
+:where(.fetch-loading__dot) {
+    animation: fetch-loading 2s ease-in-out infinite;
+    background-color: var(--fetch-loading-color, #52525c);
+    flex-shrink: 0;
+    height: var(--fl-size);
+    width: var(--fl-size);
 }
+:where(.fetch-loading__dot:nth-of-type(2)) {
+    animation-delay: -1.33s;
+}
+:where(.fetch-loading__dot:nth-of-type(3)) {
+    animation-delay: -0.67s;
+}
+@keyframes fetch-loading {
+    0% {
+        opacity: 0;
+        scale: 0.5;
+        border-radius: 0%;
+        transform: translate(0px);
+    }
+    33% {
+        opacity: 1;
+        scale: 1;
+        border-radius: 80%;
+        transform: translate(0px, calc(var(--fl-size) / -2));
+    }
+    60% {
+        opacity: 1;
+        scale: 1;
+        border-radius: 80% 80% 60% 60%;
+        transform: translate(0px, calc(var(--fl-size) / 3));
+    }
+    100% {
+        opacity: 0;
+        scale: 0.5;
+        border-radius: 0%;
+        transform: translate(0px, calc(var(--fl-size) / -6));
+    }
+}
+@keyframes fetch-loading-reduced {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; border-radius: 80%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    :where(.fetch-loading__dot) {
+        animation-name: fetch-loading-reduced;
+    }
+}
+`
 
-export const FetchLoading: FC<FetchLoadingProps> = ({ ariaLabel, theme }) => {
+const toCSSLength = (value: number | string): string =>
+    typeof value === 'number' ? `${value}px` : value
+
+export const FetchLoading: FC<FetchLoadingProps> = ({
+    ariaLabel,
+    center,
+    className,
+    size,
+    style,
+    theme,
+    ...rest
+}) => {
+    const customProperties: Record<string, string> = {}
+    if (theme) customProperties['--fetch-loading-color'] = theme
+    if (size !== undefined)
+        customProperties['--fetch-loading-size'] = toCSSLength(size)
+
+    const classNames = ['fetch-loading', center && 'fetch-loading--center', className]
+        .filter(Boolean)
+        .join(' ')
+
     return (
         <div
             role={ariaLabel ? 'status' : undefined}
             aria-label={ariaLabel}
             aria-live={ariaLabel ? 'polite' : undefined}
-            style={{ display: 'flex', gap: '8px', padding: '6px 2px' }}
+            {...rest}
+            className={classNames}
+            style={{ ...(customProperties as CSSProperties), ...style }}
         >
-            <Dot delay={0} theme={theme} />
-            <Dot delay={-1.33} theme={theme} />
-            <Dot delay={-0.67} theme={theme} />
+            <style>{styles}</style>
+            <div className="fetch-loading__dot" />
+            <div className="fetch-loading__dot" />
+            <div className="fetch-loading__dot" />
         </div>
     )
 }

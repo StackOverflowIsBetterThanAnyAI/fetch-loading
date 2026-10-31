@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="80" viewBox="0 0 360 80">
+<foreignObject x="0" y="0" width="360" height="80">
+<div xmlns="http://www.w3.org/1999/xhtml" style="width:360px;height:80px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:48px;height:100%;padding:0 16px"><div class="fetch-loading" style="--fetch-loading-color:#b2a5fd;--fetch-loading-size:8px"><style>
+:where(.fetch-loading) {
+    --fl-size: var(--fetch-loading-size, 12px);
+    display: flex;
+    gap: calc(var(--fl-size) * 2 / 3);
+    padding: calc(var(--fl-size) / 2) calc(var(--fl-size) / 6);
+}
+:where(.fetch-loading--center) {
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+:where(.fetch-loading__dot) {
+    animation: fetch-loading 2s ease-in-out infinite;
+    background-color: var(--fetch-loading-color, #52525c);
+    flex-shrink: 0;
+    height: var(--fl-size);
+    width: var(--fl-size);
+}
+:where(.fetch-loading__dot:nth-of-type(2)) {
+    animation-delay: -1.33s;
+}
+:where(.fetch-loading__dot:nth-of-type(3)) {
+    animation-delay: -0.67s;
+}
+@keyframes fetch-loading {
+    0% {
+        opacity: 0;
+        scale: 0.5;
+        border-radius: 0%;
+        transform: translate(0px);
+    }
+    33% {
+        opacity: 1;
+        scale: 1;
+        border-radius: 80%;
+        transform: translate(0px, calc(var(--fl-size) / -2));
+    }
+    60% {
+        opacity: 1;
+        scale: 1;
+        border-radius: 80% 80% 60% 60%;
+        transform: translate(0px, calc(var(--fl-size) / 3));
+    }
+    100% {
+        opacity: 0;
+        scale: 0.5;
+        border-radius: 0%;
+        transform: translate(0px, calc(var(--fl-size) / -6));
+    }
+}
+@keyframes fetch-loading-reduced {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; border-radius: 80%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    :where(.fetch-loading__dot) {
+        animation-name: fetch-loading-reduced;
+    }
+}
+</style><div class="fetch-loading__dot"></div><div class="fetch-loading__dot"></div><div class="fetch-loading__dot"></div></div><div class="fetch-loading" style="--fetch-loading-color:#b2a5fd"><style>
+:where(.fetch-loading) {
+    --fl-size: var(--fetch-loading-size, 12px);
+    display: flex;
+    gap: calc(var(--fl-size) * 2 / 3);
+    padding: calc(var(--fl-size) / 2) calc(var(--fl-size) / 6);
+}
+:where(.fetch-loading--center) {
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+:where(.fetch-loading__dot) {
+    animation: fetch-loading 2s ease-in-out infinite;
+    background-color: var(--fetch-loading-color, #52525c);
+    flex-shrink: 0;
+    height: var(--fl-size);
+    width: var(--fl-size);
+}
+:where(.fetch-loading__dot:nth-of-type(2)) {
+    animation-delay: -1.33s;
+}
+:where(.fetch-loading__dot:nth-of-type(3)) {
+    animation-delay: -0.67s;
+}
+@keyframes fetch-loading {
+    0% {
+        opacity: 0;
+        scale: 0.5;
+        border-radius: 0%;
+        transform: translate(0px);
+    }
+    33% {
+        opacity: 1;
+        scale: 1;
+        border-radius: 80%;
+        transform: translate(0px, calc(var(--fl-size) / -2));
+    }
+    60% {
+        opacity: 1;
+        scale: 1;
+        border-radius: 80% 80% 60% 60%;
+        transform: translate(0px, calc(var(--fl-size) / 3));
+    }
+    100% {
+        opacity: 0;
+        scale: 0.5;
+        border-radius: 0%;
+        transform: translate(0px, calc(var(--fl-size) / -6));
+    }
+}
+@keyframes fetch-loading-reduced {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; border-radius: 80%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    :where(.fetch-loading__dot) {
+        animation-name: fetch-loading-reduced;
+    }
+}
+</style><div class="fetch-loading__dot"></div><div class="fetch-loading__dot"></div><div class="fetch-loading__dot"></div></div><div class="fetch-loading" style="--fetch-loading-color:#b2a5fd;--fetch-loading-size:1.5rem"><style>
+:where(.fetch-loading) {
+    --fl-size: var(--fetch-loading-size, 12px);
+    display: flex;
+    gap: calc(var(--fl-size) * 2 / 3);
+    padding: calc(var(--fl-size) / 2) calc(var(--fl-size) / 6);
+}
+:where(.fetch-loading--center) {
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+:where(.fetch-loading__dot) {
+    animation: fetch-loading 2s ease-in-out infinite;
+    background-color: var(--fetch-loading-color, #52525c);
+    flex-shrink: 0;
+    height: var(--fl-size);
+    width: var(--fl-size);
+}
+:where(.fetch-loading__dot:nth-of-type(2)) {
+    animation-delay: -1.33s;
+}
+:where(.fetch-loading__dot:nth-of-type(3)) {
+    animation-delay: -0.67s;
+}
+@keyframes fetch-loading {
+    0% {
+        opacity: 0;
+        scale: 0.5;
+        border-radius: 0%;
+        transform: translate(0px);
+    }
+    33% {
+        opacity: 1;
+        scale: 1;
+        border-radius: 80%;
+        transform: translate(0px, calc(var(--fl-size) / -2));
+    }
+    60% {
+        opacity: 1;
+        scale: 1;
+        border-radius: 80% 80% 60% 60%;
+        transform: translate(0px, calc(var(--fl-size) / 3));
+    }
+    100% {
+        opacity: 0;
+        scale: 0.5;
+        border-radius: 0%;
+        transform: translate(0px, calc(var(--fl-size) / -6));
+    }
+}
+@keyframes fetch-loading-reduced {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; border-radius: 80%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    :where(.fetch-loading__dot) {
+        animation-name: fetch-loading-reduced;
+    }
+}
+</style><div class="fetch-loading__dot"></div><div class="fetch-loading__dot"></div><div class="fetch-loading__dot"></div></div></div>
+</div>
+</foreignObject>
+</svg>

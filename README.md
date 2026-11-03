@@ -140,10 +140,10 @@ Users with `prefers-reduced-motion` enabled see a gentle fade instead of the bou
 ## Development
 
 ```
-npm run build        # bundle ESM, CJS and type declarations into dist/
-npm test             # render tests for the ESM and CJS build
-npm run test:types   # type check a consumer file against the declarations
-npm run test:package # lint package.json exports and types (publint, attw)
+npm run build            # bundle ESM, CJS and type declarations into dist/
+npm test                 # render tests for the ESM and CJS build
+npm run test:types       # type check a consumer file against the declarations
+npm run test:package     # lint package.json exports and types (publint, attw)
 ```
 
 All checks also run automatically before `npm publish`. The CI runs them against React 18 and 19 and additionally builds a Vite app with the packed package and checks it in a headless browser. Once a week, the same check runs against the version published on npm.

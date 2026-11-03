@@ -29,7 +29,7 @@ import { FetchLoading } from 'fetch-loading'
 
 ```
 
-![Default Fetch Loading Animation Preview](https://github.com/user-attachments/assets/b4ee8647-0b14-4af4-8f67-cba615b31031)
+![Default Fetch Loading Animation Preview](https://raw.githubusercontent.com/StackOverflowIsBetterThanAnyAI/fetch-loading/main/assets/default.svg?sanitize=true)
 
 You can pass any valid CSS color (Hex, RGB(A), HSL, named colors, `var(--my-color)`, …) as an argument for the `theme` property:
 
@@ -51,7 +51,7 @@ You can pass any valid CSS color (Hex, RGB(A), HSL, named colors, `var(--my-colo
 ...
 ```
 
-![Theme Fetch Loading Animation Preview](https://github.com/user-attachments/assets/e0179995-309a-46f0-988f-70bf3e2ce9d6)
+![Theme Fetch Loading Animation Preview](https://raw.githubusercontent.com/StackOverflowIsBetterThanAnyAI/fetch-loading/main/assets/theme.svg?sanitize=true)
 
 By passing a descriptive value for `ariaLabel`, the following properties are added:
 
